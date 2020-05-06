@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<!DOCTYPE Magacin SYSTEM "magacin.dtd">
 <Magacin>
   <Artikal>
     <Naziv sifra="s1">Mleko</Naziv>
