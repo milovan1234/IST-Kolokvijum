@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<Magacin>
+  <Artikal>
+    <Naziv sifra="s1">Mleko</Naziv>
+    <DatumIzrade>
+      <Dan>15</Dan>
+      <Mesec>1</Mesec>
+      <Godina>2020</Godina>
+    </DatumIzrade>
+    <Cena tip="eur">1</Cena>
+    <KopmanijaProdavca>
+      <Ime>Imlek</Ime>
+      <Adresa>Vojvode Stepe 120/10</Adresa>
+    </KopmanijaProdavca>
+    <Email tip="privatni">mlekaraimlek1@gmail.com</Email>
+    <Email tip="sluzbeni">imlekdoo2@gmail.com</Email>
+  </Artikal>
+  <Artikal>
+    <Naziv sifra="s2">Plazma</Naziv>
+    <DatumIzrade>
+      <Dan>20</Dan>
+      <Mesec>3</Mesec>
+      <Godina>2020</Godina>
+    </DatumIzrade>
+    <Cena>120</Cena>
+    <KopmanijaProdavca>
+      <Ime>Bambi</Ime>
+      <Adresa>Beranska 51b/3</Adresa>
+      <Adresa>Kneginje Milice 26/26</Adresa>
+    </KopmanijaProdavca>
+    <Email tip="privatni">bambiDOO@gmail.com</Email>
+  </Artikal>
+  <Artikal>
+    <Naziv sifra="s2">Cips</Naziv>
+    <DatumIzrade>
+      <Dan>18</Dan>
+      <Mesec>4</Mesec>
+      <Godina>2020</Godina>
+    </DatumIzrade>
+    <Cena tip="din">70</Cena>
+    <KopmanijaProdavca>
+      <Ime>Marbo</Ime>
+      <Adresa>Ustanicka 52</Adresa>
+    </KopmanijaProdavca>
+    <Email tip="privatni">marbo1995@gmail.com</Email>
+  </Artikal>
+</Magacin>
