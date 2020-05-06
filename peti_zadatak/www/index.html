@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artikli</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Sve Artikli</h2>
+    Ime kompanije: <input type="text" id="ime_kompanije"><br><br>
+    <input type="button" onclick="pretraziPoKompaniji()" value="PRETRAZI PO KOMPANIJI"> <br><br>
+    <div id="prikazArtikala"></div>
+
+    <h2>Dodaj Artikal</h2>
+    <form>
+        Id: <input type="number" id="id_dod"><br><br>
+        Naziv: <input type="text" id="naziv_dod"><br><br>
+        Cena: <input type="number" id="cena_dod"><br><br>
+        Ime Kopmanije: <input type="text" id="komp_dod"><br><br>
+        <input type="button" value="DODAJ ARTIKAL" onclick="dodajArtikal()">
+    </form>
+
+
+    <h2>Obrisi Artikal</h2>
+    <form>
+        Id: <input type="number" id="id_del"><br><br>
+        <input type="button" value="OBRISI ARTIKAL" onclick="obrisiArtikal()">
+    </form>
+
+
+    <h2>Izmeni Artikal</h2>
+    <form>
+        Id: <input type="number" id="id_izm"><br><br>
+        Naziv: <input type="text" id="naziv_izm"><br><br>
+        Cena: <input type="number" id="cena_izm"><br><br>
+        Ime Kopmanije: <input type="text" id="komp_izm"><br><br>
+        <input type="button" value="IZMNENI ARTIKAL" onclick="izmeniArtikal()">
+    </form>
+
+    <script>
+        $(document).ready(function(){
+            ucitajPodatke();            
+        });
+        function ucitajPodatke(){
+            console.log(document.querySelector('#ime_kompanije').value)
+            $.ajax({
+               url: '/sve-artikli',
+               type: 'GET',
+               data: {
+                   'imeKompanije': document.querySelector('#ime_kompanije').value
+               },
+               dataType: 'json',
+               success: function(response){   
+                   console.log(response);
+                   prikazPodataka(response);
+               }
+            });
+        }
+        function pretraziPoKompaniji(){
+            console.log(document.querySelector('#ime_kompanije').value)
+            $.ajax({
+               url: '/sve-artikli',
+               type: 'GET',
+               data: {
+                   'imeKompanije': document.querySelector('#ime_kompanije').value
+               },
+               dataType: 'json',
+               success: function(response){
+                   prikazPodataka(response);
+               }
+            });
+        }
+        function prikazPodataka(response){
+            let divPrikazArtikala = document.querySelector('#prikazArtikala');
+            let html = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Naziv</th>
+                            <th>Cena</th>
+                            <th>Naziv Kompanije</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            for(let a of response){
+                html += `
+                    <tr>
+                        <td>${a.id}</td>
+                        <td>${a.naziv}</td>
+                        <td>${a.cena}</td>
+                        <td>${a.imeKompanije}</td>
+                    </tr>
+                `;
+            }
+            html += `
+                    </tbody>
+                </table>    
+            `;
+            divPrikazArtikala.innerHTML = html;
+        }
+        function dodajArtikal(){
+            $.ajax({
+               url: '/dodaj-artikal',
+               type: 'POST',
+               data: {
+                   'id': document.querySelector('#id_dod').value,
+                   'naziv': document.querySelector('#naziv_dod').value,
+                   'cena': document.querySelector('#cena_dod').value,
+                   'imeKompanije': document.querySelector('#komp_dod').value,
+               },
+               dataType: 'json',
+               success: function(response){                   
+                    prikazPodataka(response)
+               }
+            });
+        }
+
+        function obrisiArtikal(){
+            $.ajax({
+               url: '/obrisi-artikal',
+               type: 'POST',
+               data: {
+                   'id': document.querySelector('#id_del').value,
+               },
+               dataType: 'json',
+               success: function(response){                   
+                    prikazPodataka(response)
+               }
+            });
+        }
+
+        function izmeniArtikal(){
+            $.ajax({
+               url: '/izmeni-artikal',
+               type: 'POST',
+               data: {
+                   'id': document.querySelector('#id_izm').value,
+                   'naziv': document.querySelector('#naziv_izm').value,
+                   'cena': document.querySelector('#cena_izm').value,
+                   'imeKompanije': document.querySelector('#komp_izm').value,
+               },
+               dataType: 'json',
+               success: function(response){                   
+                    prikazPodataka(response)
+               }
+            });
+        }
+    </script>
+</body>
+</html>
